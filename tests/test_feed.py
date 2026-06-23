@@ -1,6 +1,5 @@
 import allure
 import pytest
-import time
 from conftest import login_user
 from pages.feed_page import FeedPage
 from data import MAIN_URL
@@ -17,7 +16,7 @@ class TestFeed:
         driver.get(MAIN_URL)
         feed_page = FeedPage(driver)
         feed_page.open_feed()
-        assert "/feed" in driver.current_url
+        assert "/feed" in driver.current_url  
 
     @allure.title("Счётчик «Выполнено за всё время» увеличивается после создания заказа")
     def test_total_orders_counter_increases(self, driver, registered_user):
@@ -27,12 +26,12 @@ class TestFeed:
         total_before = feed_page.get_total_orders_count()
 
         create_order(driver)
+
+        # Ожидаем исчезновения модального окна (если оно появилось)
         try:
             WebDriverWait(driver, 5).until(EC.invisibility_of_element_located(StellarLocators.INGREDIENT_POPUP))
         except:
             pass
-        
-        time.sleep(2)
 
         feed_page.open_feed()
 
@@ -52,12 +51,11 @@ class TestFeed:
         today_before = feed_page.get_today_orders_count()
 
         create_order(driver)
+
         try:
             WebDriverWait(driver, 5).until(EC.invisibility_of_element_located(StellarLocators.INGREDIENT_POPUP))
         except:
             pass
-        
-        time.sleep(2)
 
         feed_page.open_feed()
 
@@ -74,12 +72,11 @@ class TestFeed:
         login_user(driver, registered_user["email"], registered_user["password"])
 
         order_number = create_order(driver)
+
         try:
             WebDriverWait(driver, 5).until(EC.invisibility_of_element_located(StellarLocators.INGREDIENT_POPUP))
         except:
             pass
-        
-        time.sleep(2)
 
         feed_page = FeedPage(driver)
         feed_page.open_feed()

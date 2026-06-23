@@ -27,6 +27,4 @@ def create_order(driver, ingredients=None):
     WebDriverWait(driver, 5).until(
         EC.invisibility_of_element_located(StellarLocators.INGREDIENT_POPUP)
     )
-    time.sleep(3)
-
     return order_number

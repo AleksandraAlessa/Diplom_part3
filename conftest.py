@@ -35,26 +35,10 @@ def registered_user():
 def driver(request):
     browser = request.param
     if browser == "chrome":
-        chrome_options = ChromeOptions()
-        chrome_options.add_argument('--no-proxy-server')
-        service = ChromeService(ChromeDriverManager().install())
-        driver = webdriver.Chrome(service=service, options=chrome_options)
+        driver = webdriver.Chrome()
     elif browser == "firefox":
-        firefox_options = FirefoxOptions()
-        firefox_options.add_argument('--no-proxy-server')
-        # Используем локальный geckodriver, если он есть
-        geckodriver_path = "C:/Diplom3/drivers/geckodriver.exe"
-        try:
-            service = FirefoxService(executable_path=geckodriver_path)
-            driver = webdriver.Firefox(service=service, options=firefox_options)
-        except Exception:
-            # fallback на webdriver_manager, если локальный не работает
-            service = FirefoxService(GeckoDriverManager().install())
-            driver = webdriver.Firefox(service=service, options=firefox_options)
-    else:
-        raise ValueError(f"Unsupported browser: {browser}")
+        driver = webdriver.Firefox()
 
-    driver.maximize_window()
     yield driver
     driver.quit()
 

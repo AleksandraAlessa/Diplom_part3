@@ -9,6 +9,6 @@ def generate_unique_email():
     """
     first_name = "aleksandra"          # ваше имя
     last_name = "usova"        # ваша фамилия
-    cohort = "46"                 # номер когорты (спринт 5)
+    cohort = "46"                 # номер когорты 
     random_digits = ''.join(random.choices(string.digits, k=3))
     return f"{first_name}_{last_name}_{cohort}_{random_digits}@yandex.ru"

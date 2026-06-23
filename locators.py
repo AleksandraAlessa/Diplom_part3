@@ -26,12 +26,10 @@ class StellarLocators:
     CONSTRUCTOR_BUTTON = (By.XPATH, "//p[text()='Конструктор']")
     LOGO = (By.XPATH, "//a[contains(@href, '/')]//*[local-name()='svg']")
     INGREDIENT = (By.XPATH, "//a[contains(@class, 'BurgerIngredient_ingredient')]")
-    # Используем contains(text()) для частичного совпадения
     INGREDIENT_BY_NAME = (By.XPATH, "//a[contains(@class, 'BurgerIngredient_ingredient') and .//p[contains(text(), '{name}')]]")
     INGREDIENT_POPUP = (By.XPATH, "//div[contains(@class, 'Modal_modal')]")
     CLOSE_POPUP_BUTTON = (By.XPATH, "//button[contains(@class, 'Modal_modal__close')]")
     COUNTER = (By.XPATH, ".//div[contains(@class, 'counter_counter')]")
-    # Исправленный локатор для корзины (область конструктора)
     CONSTRUCTOR_TARGET = (By.XPATH, "//ul[contains(@class, 'BurgerConstructor_basket__list')]")
 
     # ---------- Вкладки конструктора ----------
